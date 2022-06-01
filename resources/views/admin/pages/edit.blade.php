@@ -50,8 +50,7 @@
 
                     <div class="col-md-12 form-group required">
                         <label for="content">Content</label>
-                        {{-- <div id="editor" name="content">{{ old('content') ?? $record->content }}</div> --}}
-                        <textarea type="text" name="content" class="ckeditor form-control form-control-sm @error('content') is-invalid @enderror" required >{{ old('content') ?? $record->content }}</textarea>
+                        <textarea type="text" name="content" class="form-control form-control-sm @error('content') is-invalid @enderror" required >{{ old('content') ?? $record->content }}</textarea>
                         @include('admin.components.form-error', ['key' => 'content'])
                     </div>
                 </div>
@@ -64,38 +63,9 @@
 </div>
 @endsection
 
-
 @section('extra-js')
-{{-- <script src="{{asset('kdassets/js/ckeditor.js')}}"></script> --}}
-<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-<style>
-#editor {
-	background: var(--ck-sample-color-white);
-	border: 1px solid #DFE4E6;
-	border-bottom-color: #cdd0d2;
-	border-right-color: #cdd0d2;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	width: 100%;
-	min-height: 21cm;
-	/* padding: 1cm 1cm 2cm; */
-	margin: 0 auto;
-	box-shadow: 2px 2px 1px rgba(0,0,0,.05);
-}
-
-.ck.ck-editor {
-	box-shadow: 2px 2px 2px rgba(0,0,0,.1);
-}
-
-.ck.ck-content {
-	font-size: 1em;
-	line-height: 1.6em;
-	margin-bottom: 0.8em;
-	min-height: 200px;
-	padding: 1.5em 2em;
-}
-</style>
+<script src="{{asset('kdassets/plugins/ckeditor/ckeditor.js')}}"></script>
 <script>
-    // $('.ckeditor').ckeditor();
+    CKEDITOR.replace( 'content');
 </script>
 @endsection

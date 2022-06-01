@@ -61,3 +61,10 @@
     </div>
 </div>
 @endsection
+
+@section('extra-js')
+<script src="{{asset('kdassets/plugins/ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace( 'content');
+</script>
+@endsection
