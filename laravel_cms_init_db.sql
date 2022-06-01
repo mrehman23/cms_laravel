@@ -18,9 +18,7 @@ CREATE TABLE `kd_auth_assignment` (
 INSERT INTO `kd_auth_assignment` (`item_name`, `user_id`, `created_at`, `updated_at`) VALUES
 ('adm_user_management', 1, 1630344822, NULL),
 ('general_permissions', 1, 1630345210, NULL),
-('super_permission', 1, 1630350436, NULL),
-('general_permissions', 2, 1635800552, NULL),
-('super_permission', 2, 1635800573, NULL);
+('super_permission', 1, 1630350436, NULL);
 
 -- --------------------------------------------------------
 
@@ -170,6 +168,5 @@ INSERT INTO `kd_auth_item_child` (`parent`, `child`) VALUES
 --
 
 INSERT INTO `kd_users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mati', 'mati@gmail.com', NULL, '$2y$10$lglPTWB13UlB.RwnWiL7JOopRlpeZwGdvV.OdYKaAAl.8MyMB8AFu', NULL, '2022-05-18 06:15:07', '2022-05-18 06:15:07'),
-(2, 'Waqas Ahmed', 'waqas@gmail.com', NULL, '$2y$10$3Iax8H/yrv.kgcod0XZr4uYPTIpMUEuZs.N9CNHJE8PpRk9lSVA4y', NULL, '2022-05-18 06:15:55', '2022-05-18 06:15:55');
+(1, 'Mati', 'mati@gmail.com', NULL, '$2y$10$lglPTWB13UlB.RwnWiL7JOopRlpeZwGdvV.OdYKaAAl.8MyMB8AFu', NULL, '2022-05-18 06:15:07', '2022-05-18 06:15:07');
 COMMIT;
