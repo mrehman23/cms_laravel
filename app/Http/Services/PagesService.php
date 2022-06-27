@@ -89,7 +89,7 @@ class PagesService {
         $template = [];
         $files = Storage::disk('templates')->files('',true);
         foreach($files as $file) {
-            $template[]=ucfirst(str_replace("/",".",str_replace(".blade.php","",$file)));
+            $template[]=str_replace("/",".",str_replace(".blade.php","",$file));
         }
         return $template;
     }
