@@ -23,10 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'WebSiteController@index')->name('home');
-Route::get('/about', 'WebSiteController')->name('about');
-Route::get('/our-brands', 'WebSiteController')->name('our-brands');
-Route::get('/services', 'WebSiteController')->name('services');
-Route::get('/contact', 'WebSiteController')->name('contact');
+Route::get('/{name}', 'WebSiteController')->name('page')->where('name', implode('|',(menuList()->pluck('slug')->toArray())?:['/']));
+// Route::get('/about', 'WebSiteController')->name('about');
+// Route::get('/our-brands', 'WebSiteController')->name('our-brands');
+// Route::get('/services', 'WebSiteController')->name('services');
+// Route::get('/contact', 'WebSiteController')->name('contact');
 // Route::get('/about', 'WebSiteController@about')->name('about');
 // Route::get('/our-brands', 'WebSiteController@our-brands')->name('our-brands');
 // Route::get('/services', 'WebSiteController@services')->name('services');

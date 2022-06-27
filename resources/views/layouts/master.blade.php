@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         @foreach (menuList() as $menu)
-                            <li><a class="nav-link" href="{{Route::has($menu->slug) ? route($menu->slug) : 'javascript:void(0);'}}">{{Str::replaceArray('-',[' '],Str::Title($menu->name))}}</a></li>
+                            <li><a class="nav-link" href="{{Route::has('page') ? route('page',$menu->slug) : 'javascript:void(0);'}}">{{Str::replaceArray('-',[' '],Str::Title($menu->name))}}</a></li>
                         @endforeach
                         @guest
                             <li><a class="nav-link" href="{{ url('/login') }}">Login</a></li>

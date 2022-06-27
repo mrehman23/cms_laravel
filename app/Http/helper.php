@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Services\PagesService;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 function notifications()
 {
@@ -11,8 +11,11 @@ function notifications()
 }
 
 function menuList() {
-    $pagesSvc = new PagesService();
-    return $menuList = $pagesSvc->fetchPagesForMenu();
+    $key = 'pages-menu-list';
+    return Cache::remember($key, 10800, function () use($key){
+        $pagesSvc = new PagesService();
+        return  $pagesSvc->fetchPagesForMenu();
+    });
 }
 
 function StatusLov() {

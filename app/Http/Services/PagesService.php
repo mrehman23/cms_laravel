@@ -50,6 +50,7 @@ class PagesService {
         $record->menu_visible = isset($menu_visible) ? 1 : 0;
         $record->weight = $weight;
         $record->save();
+        $this->resetPagesMenuCache();
         return $record;
     }
 
@@ -65,25 +66,19 @@ class PagesService {
         $record->menu_visible = isset($menu_visible) ? 1 : 0;
         $record->weight = $weight;
         $record->save();
-
+        $this->resetPagesMenuCache();
         return $record;
     }
 
     public function delete($id)
     {
         $record = $this->fetch($id);
-        return $record->delete();
+        $res = $record->delete();
+        $this->resetPagesMenuCache();
+        return $res;
     }
 
-    // public function bulkEdit($data)
-    // {
-    //     extract($data);
-    //     foreach ($settings as $key => $val) {
-    //         extract($val);
-    //         $record = $this->model->select('id', 'key', 'value')->where('id', $key)->first();
-    //         $record->value = $value;
-    //         $record->save();
-    //         Cache::forever('settings-'.$config, $value);
-    //     }
-    // }
+    private function resetPagesMenuCache() {
+        Cache::forever('pages-menu-list', $this->fetchPagesForMenu());
+    }
 }

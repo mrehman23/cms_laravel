@@ -24,13 +24,13 @@ class WebSiteController extends Controller
     {
         $slug=request()->segment(1);
         $record = $this->service->fetchBySlug($slug);
-        return view('pages.' . $slug, compact('record'));
+        return view('page', compact('slug','record'));
     }
 
 
     public function index()
     {
-        return view('pages.home');
+        return view('home');
     }
 
     // public function about()

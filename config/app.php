@@ -264,9 +264,7 @@ return [
             // 'kd.assignment.assign',
             // 'kd.assignment.revoke',
             'home',
-            'about',
-            'services',
-            'contact',
+            'page',
             'login',
         ],
     ]
