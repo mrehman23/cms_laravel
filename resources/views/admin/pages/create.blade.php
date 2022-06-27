@@ -14,16 +14,27 @@
             <div class="card-body">
                 <div class="row">
                     @csrf
-                    <div class="col-md-4 form-group required">
+                    <div class="col-md-3 form-group required">
                         <label for="name">Page Name</label>
                         <input type="text" name="name" class="form-control form-control-sm @error('name') is-invalid @enderror" value="{{ old('name') }}" required />
                         @include('admin.components.form-error', ['key' => 'name'])
                     </div>
 
-                    <div class="col-md-4 form-group required">
+                    <div class="col-md-3 form-group required">
                         <label for="heading">Page Heading</label>
                         <input type="text" name="heading" class="form-control form-control-sm @error('heading') is-invalid @enderror" value="{{ old('heading') }}" required />
                         @include('admin.components.form-error', ['key' => 'heading'])
+                    </div>
+
+                    <div class="col-md-2 form-group required">
+                        <label for="template">Page Template</label>
+                        <select name="template" class="form-control form-control-sm @error('template') is-invalid @enderror" value="{{ old('template') }}">
+                            <option value="">--Select--</option>
+                            @foreach ($templates as $template)
+                                <option value="{{$template}}">{{$template}}</option>
+                            @endforeach
+                        </select>
+                        @include('admin.components.form-error', ['key' => 'template'])
                     </div>
 
                     <div class="col-md-2 form-group required">

@@ -20,6 +20,7 @@ class TablePages extends Migration
             $table->string('slug');
             $table->string('lan');
             $table->string('heading');
+            $table->string('template')->nullable();
             $table->integer('menu_visible');
             $table->integer('weight');
             $table->integer('status')->default('1');

@@ -1,6 +1,7 @@
 <?php
 
 // use App\Http\Controllers\WebSiteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,16 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'WebSiteController@index')->name('home');
 Route::get('/{name}', 'WebSiteController')->name('page')->where('name', implode('|',(menuList()->pluck('slug')->toArray())?:['/']));
-// Route::get('/about', 'WebSiteController')->name('about');
-// Route::get('/our-brands', 'WebSiteController')->name('our-brands');
-// Route::get('/services', 'WebSiteController')->name('services');
-// Route::get('/contact', 'WebSiteController')->name('contact');
-// Route::get('/about', 'WebSiteController@about')->name('about');
-// Route::get('/our-brands', 'WebSiteController@our-brands')->name('our-brands');
-// Route::get('/services', 'WebSiteController@services')->name('services');
-// Route::get('/contact', 'WebSiteController@contact')->name('contact');
+Route::post('/contact', 'WebSiteController@contact')->name('contact');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function(){
     Route::get('home', 'PagesController@index')->name('home');

@@ -266,6 +266,9 @@ return [
             'home',
             'page',
             'login',
+            'contact',
         ],
-    ]
+    ],
+
+    'mail_to' => env('MAIL_TO_ADDRESS', 'k173093@gmail.com'),
 ];

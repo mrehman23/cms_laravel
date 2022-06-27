@@ -27,6 +27,7 @@ class Pages extends FormRequest
             'id' => 'nullable',
             'name' => 'required|string|max:140',
             'heading' => 'required|string|max:140',
+            'template' => 'nullable',
             'lan' => 'required|string',
             'content' => 'required|string',
             'menu_visible' => 'nullable',

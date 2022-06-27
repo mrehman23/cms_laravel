@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Pages;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PagesService {
@@ -45,6 +46,7 @@ class PagesService {
         $record->name = $name;
         $record->slug = Str::slug($name);
         $record->heading = $heading;
+        $record->template = $template;
         $record->lan = $lan;
         $record->content = $content;
         $record->menu_visible = isset($menu_visible) ? 1 : 0;
@@ -61,6 +63,7 @@ class PagesService {
         $record->name = $name;
         $record->slug = Str::slug($name);
         $record->heading = $heading;
+        $record->template = $template;
         $record->lan = $lan;
         $record->content = $content;
         $record->menu_visible = isset($menu_visible) ? 1 : 0;
@@ -80,5 +83,14 @@ class PagesService {
 
     private function resetPagesMenuCache() {
         Cache::forever('pages-menu-list', $this->fetchPagesForMenu());
+    }
+
+    public function getTemplateList() {
+        $template = [];
+        $files = Storage::disk('templates')->files('',true);
+        foreach($files as $file) {
+            $template[]=ucfirst(str_replace("/",".",str_replace(".blade.php","",$file)));
+        }
+        return $template;
     }
 }

@@ -17,9 +17,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{!!(!empty($record->name) ? $record->name : '')!!}</div>
-
                 <div class="card-body">
                     {!!(!empty($record->content) ? $record->content : '')!!}
+                    @if(!empty($record->template))
+                        @include('templates.'.$record->template)
+                    @endif
                 </div>
             </div>
         </div>

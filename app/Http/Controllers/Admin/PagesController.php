@@ -31,7 +31,8 @@ class PagesController extends Controller
     {
         $entity = $this->entity;
         $records = $this->service->list();
-        return view('admin.'.$this->entity.'.create', compact('entity', 'records'));
+        $templates = $this->service->getTemplateList();
+        return view('admin.'.$this->entity.'.create', compact('entity', 'records','templates'));
     }
 
     public function store(Pages $request)
@@ -58,7 +59,8 @@ class PagesController extends Controller
     {
         $entity = $this->entity;
         $record = $this->service->fetch($id);
-        return view('admin.'.$this->entity.'.edit', compact('entity', 'record'));
+        $templates = $this->service->getTemplateList();
+        return view('admin.'.$this->entity.'.edit', compact('entity', 'record','templates'));
     }
 
     public function update(Pages $request)
