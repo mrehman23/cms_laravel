@@ -7,7 +7,6 @@ npm install
 npm run dev
 php artisan migrate
 php artisan db:seed
-import laravel_cms_init_db.sql file in mysql
 ```
 
 ## About Laravel
