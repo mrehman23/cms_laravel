@@ -7,6 +7,7 @@ use App\Http\Services\{RouterService,PagesService};
 use App\Mail\ContactForm;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+
 class WebSiteController extends Controller
 {
     protected $entity, $router, $service, $routerService;
@@ -19,27 +20,27 @@ class WebSiteController extends Controller
     {
         $this->service = new PagesService();
         $this->routerService = new RouterService();
-        // $this->middleware('auth');
     }
 
     public function __invoke()
     {
-        $slug=request()->segment(1);
+        $slug=request()->segment(2);
         $record = $this->service->fetchBySlug($slug);
-        return view('page', compact('slug','record'));
+        return view('pages.page', compact('slug','record'));
     }
 
 
     public function index()
     {
-        return view('home');
+        $record = $this->service->fetchBySlug('news-events');
+        return view('pages.home_'.getSelectedLang(),compact('record'));
     }
 
     public function contact(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|unique:posts|max:255',
             'name' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
             'email' => 'required|email|string|max:255',
             'phone' => 'required|string|max:255',
             'message' => 'required|max:255',

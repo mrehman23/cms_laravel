@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'date_format' => env('DATE_FORMAT', 'd M y'),
+    'datetime_format' => env('DATETIME_FORMAT', 'd M y - h:i A'),
 
     /*
     |--------------------------------------------------------------------------
@@ -231,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Carbon' => Carbon\Carbon::class,
     ],
 
     'kdladmin' => [
@@ -263,7 +266,9 @@ return [
             // 'kd.assignment.view',
             // 'kd.assignment.assign',
             // 'kd.assignment.revoke',
+            'lang',
             'home',
+            'langhome',
             'page',
             'login',
             'contact',

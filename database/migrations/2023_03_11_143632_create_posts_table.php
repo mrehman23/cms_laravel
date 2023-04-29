@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class TablePages extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,20 +14,22 @@ class TablePages extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
             $table->string('lan');
-            $table->string('heading');
-            $table->string('template')->nullable();
-            $table->integer('menu_visible');
+            $table->string('short_description',1000);
+            $table->string('image')->nullable();
             $table->integer('weight');
             $table->integer('status')->default('1');
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
-        DB::statement("ALTER TABLE ".DB::getTablePrefix()."pages ADD content LONGBLOB NULL AFTER heading");
+        DB::statement("ALTER TABLE ".DB::getTablePrefix()."posts ADD description LONGBLOB NULL AFTER short_description");
     }
 
     /**
@@ -37,6 +39,6 @@ class TablePages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('posts');
     }
 }

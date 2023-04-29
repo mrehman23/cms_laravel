@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['layouts.*','admin.*'], function ($view) {
+        view()->composer(['layouts.*','admin.*','pages.*','templates.*'], function ($view) {
+            $view->with('current_locale', app()->getLocale());
             $settingSvc = new SettingService();
             foreach($settingSvc->fetchAllKeys() as $setting) {
                 // $key=$setting->key;

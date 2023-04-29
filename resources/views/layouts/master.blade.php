@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html dir="{{$current_locale=="en" ? "ltr" : "rtl"}}" lang="{{ $current_locale }}">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="{{ !empty($app_name) ? $app_name->value : config()->get('app.name') }}" />
     <meta name="author" content="{{ !empty($app_name) ? $app_name->value : config()->get('app.name') }}" />
     <meta name="csrf_token" content="{{ csrf_token() }}" />
@@ -28,8 +28,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         @foreach (menuList() as $menu)
-                            <li><a class="nav-link" href="{{Route::has('page') ? route('page',$menu->slug) : 'javascript:void(0);'}}">{{Str::replaceArray('-',[' '],Str::Title($menu->name))}}</a></li>
+                            <li><a class="nav-link" href="{{Route::has('page') ? route('page',[getSelectedLang(),$menu->slug]) : 'javascript:void(0);'}}">{{Str::replaceArray('-',[' '],Str::Title($menu->name))}}</a></li>
                         @endforeach
+                        <li><a href="{{route('lang',($current_locale=="en" ? "ar" : "en"))}}">{{__('settings.lang')}} </a></li>
                         @guest
                             <li><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
                             <li><a class="nav-link" href="{{ url('/register') }}">Register</a></li>

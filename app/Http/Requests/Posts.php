@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Pages extends FormRequest
+class Posts extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +26,13 @@ class Pages extends FormRequest
         return [
             'id' => 'nullable',
             'name' => 'required|string|max:140',
-            'slug' => 'required|string|max:140',
-            'heading' => 'required|string|max:140',
-            'template' => 'nullable',
+            'category_id' => 'required|integer',
             'lan' => 'required|string',
+            'short_description' => 'nullable|string|max:500',
             'content' => 'nullable|string',
-            'menu_visible' => 'nullable',
-            'weight' => 'required|max:2'
+            'feature_image' => 'nullable|image|mimes:jpeg,png|max:400|dimensions:max_width=1080,max_height=1080',
+            'weight' => 'required|max:2',
+            'tags' => 'nullable|array',
         ];
     }
 }

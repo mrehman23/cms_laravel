@@ -6,8 +6,9 @@ You have received email from Contact from.
 | Type       | Description    |
 | ------------- |:-------------:|
 | Name          | {{$data['name']}}     |
+| Address       | {{$data['address']}}  |
+| Phone         | {{$data['phone']}}    |
 | Email         | {{$data['email']}}    |
-| Phone         | {{$data['phone']}}   |
 | Message       | {{$data['message']}}  |
 @endcomponent
 

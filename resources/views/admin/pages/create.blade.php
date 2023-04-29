@@ -19,6 +19,11 @@
                         <input type="text" name="name" class="form-control form-control-sm @error('name') is-invalid @enderror" value="{{ old('name') }}" required />
                         @include('admin.components.form-error', ['key' => 'name'])
                     </div>
+                    <div class="col-md-3 form-group required">
+                        <label for="slug">Slug</label>
+                        <input type="text" name="slug" class="form-control form-control-sm @error('slug') is-invalid @enderror" value="{{ old('slug') }}" required />
+                        @include('admin.components.form-error', ['key' => 'slug'])
+                    </div>
 
                     <div class="col-md-3 form-group required">
                         <label for="heading">Page Heading</label>
@@ -40,8 +45,9 @@
                     <div class="col-md-2 form-group required">
                         <label for="lan">Lanuage</label>
                         <select name="lan" class="form-control form-control-sm @error('lan') is-invalid @enderror" value="{{ old('lan') }}" required >
-                            <option value="en">Englist</option>
-                            <option value="ar">Arabic</option>
+                            @foreach (LanguagesList() as $key => $language)
+                                <option value="{{$key}}">{{$language}}</option>
+                            @endforeach
                         </select>
                         @include('admin.components.form-error', ['key' => 'lan'])
                     </div>
@@ -60,7 +66,7 @@
 
                     <div class="col-md-12 form-group required">
                         <label for="content">Content</label>
-                        <textarea type="text" name="content" class="form-control form-control-sm @error('content') is-invalid @enderror" required >{{ old('content') }}</textarea>
+                        <textarea type="text" name="content" class="form-control form-control-sm @error('content') is-invalid @enderror" required style="min-height:700px;">{{ old('content') }}</textarea>
                         @include('admin.components.form-error', ['key' => 'content'])
                     </div>
                 </div>
