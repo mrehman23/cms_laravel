@@ -4,6 +4,7 @@ use App\User;
 use Kd\Kdladmin\Models\AuthItem;
 use Kd\Kdladmin\Models\AuthItemChild;
 use Kd\Kdladmin\Models\Assignment;
+use App\Models\AdminMenu;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -174,6 +175,43 @@ class AuthTableSeeder extends Seeder
             Assignment::insert($array);
         }
 
-
+        //Admin Menu Seeds
+        $array = [];
+        $kd_admin_menu = [
+            ['parent_id' => 0, 'name' => 'Dashboard', 'route_name' => '#', 'icon' => 'fa fa-dashboard', 'sort_by' => 1],
+            ['parent_id' => 1, 'name' => 'Dashboard', 'route_name' => 'admin.home', 'icon' => 'fa fa-circle-o', 'sort_by' => 1],
+            ['parent_id' => 0, 'name' => 'User Management', 'route_name' => '#', 'icon' => 'fa fa-hand-paper-o', 'sort_by' => 2],
+            ['parent_id' => 3, 'name' => 'Assignment', 'route_name' => 'kd.assignment.index', 'icon' => 'fa fa-circle-o', 'sort_by' => 1],
+            ['parent_id' => 3, 'name' => 'Permissions', 'route_name' => 'kd.permission.index', 'icon' => 'fa fa-circle-o', 'sort_by' => 2],
+            ['parent_id' => 3, 'name' => 'Users', 'route_name' => 'kd.user.index', 'icon' => 'fa fa-circle-o', 'sort_by' => 3],
+            ['parent_id' => 0, 'name' => 'Pages', 'route_name' => '#', 'icon' => 'fa fa-hand-paper-o', 'sort_by' => 3],
+            ['parent_id' => 7, 'name' => 'List', 'route_name' => 'admin.pages.index', 'icon' => 'fa fa-circle-o', 'sort_by' => 1],
+            ['parent_id' => 7, 'name' => 'Create', 'route_name' => 'admin.pages.create', 'icon' => 'fa fa-circle-o', 'sort_by' => 2],
+            ['parent_id' => 0, 'name' => 'Posts', 'route_name' => '#', 'icon' => 'fa fa-hand-paper-o', 'sort_by' => 4],
+            ['parent_id' => 10, 'name' => 'List', 'route_name' => 'admin.posts.index', 'icon' => 'fa fa-circle-o', 'sort_by' => 1],
+            ['parent_id' => 10, 'name' => 'Create', 'route_name' => 'admin.posts.create', 'icon' => 'fa fa-circle-o', 'sort_by' => 2],
+            ['parent_id' => 0, 'name' => 'Master', 'route_name' => '#', 'icon' => 'fa fa-hand-paper-o', 'sort_by' => 5],
+            ['parent_id' => 13, 'name' => 'Setting', 'route_name' => 'admin.settings.index', 'icon' => 'fa fa-circle-o', 'sort_by' => 1],
+        ];
+        foreach ($kd_admin_menu as $item) {
+            $item = (Object) $item;
+            if(!AdminMenu::where(['name' => $item->name, 'route_name' => $item->route_name])->first()){
+                $data = [
+                    'parent_id' => $item->parent_id,
+                    'name' => $item->name,
+                    'route_name' => $item->route_name,
+                    'status' => 1,
+                    'icon' => $item->icon,
+                    'sort_by' => $item->sort_by,
+                    'is_visible' => 'Y',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ];
+                $array[] = $data;
+            }
+        }
+        if(count($array)) {
+            AdminMenu::insert($array);
+        }
     }
 }
