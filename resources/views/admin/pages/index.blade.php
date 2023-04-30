@@ -39,7 +39,6 @@
                                     <td>{{ $record->name }}</td>
                                     <td>{{ $record->slug }}</td>
                                     <td>{{ $record->heading }}</td>
-                                    {{-- <td data-toggle="modal" data-target="#page-modal-{{$record->id}}">{!! Str::limit($record->content, 50, $end='...') !!}</td> --}}
                                     <td>{!! $record->menu_visible ? '<span class="btn btn-success btn-sm">Yes</span>' : '<span class="btn btn-danger btn-sm">No</span>' !!}</td>
                                     <td>{{ $record->weight }}</td>
                                     <td>{{ $record->updated_at }}</td>
@@ -72,9 +71,6 @@
                         <x-paginator :records='$records' />
                     </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <x-save-button />
             </div>
         </div>
     </form>
