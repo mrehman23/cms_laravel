@@ -1,0 +1,19 @@
+@media screen and (min-width: 767px) {
+    #resultdata .dataTables_filter {
+        margin-top: -40px;
+    }
+
+    #resultdata .dt-buttons {
+        margin-left: 150px;
+    }
+}
+.form-control:disabled, .form-control[readonly] {
+    background-color: #e9ecef;
+}
+[data-layout-mode=dark] .form-control:disabled, [data-layout-mode=dark] .form-control[readonly] {
+    background-color: #000;
+}
+
+.hide {
+    display: none !important;
+}
