@@ -44,7 +44,9 @@ class PagesService {
             }
         }
         $pageData = $this->model->where('slug', $slug)->where('lan',getSelectedLang())->first();
-        $pageData->categories = $records;
+        if(!empty($pageData)) {
+            $pageData->categories = $records;
+        }
         return $pageData;
     }
 
